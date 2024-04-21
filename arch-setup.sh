@@ -42,3 +42,13 @@ LOG="install-$(date +%d-%H%M%S).log"
 
 script_directory=install-scripts
 
+ask_yes_no() {
+  if [[ ! -z "${!2}" ]]; then
+    echo "$(colorize_prompt "$CAT"  "$1 (Preset): ${!2}")" 
+    if [[ "${!2}" = [Yy] ]]; then
+      return 0
+    else
+      return 1
+    fi
+    # Mark yes with 0 and no with 1. and colorize the questions for installation's settings.
+}
