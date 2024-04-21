@@ -21,3 +21,24 @@ fi
 if [ ! -d script-logs ]; then
     mkdir script-Logs
 fi
+#Defining some colors for some state. Make the installation less monochromatic
+OK="$(tput setaf 2)[OK]$(tput sgr0)"
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+WARN="$(tput setaf 166)[WARN]$(tput sgr0)"
+CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
+ORANGE=$(tput setaf 166)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
+
+colorize_prompt() {
+    local color="$1"
+    local message="$2"
+    echo -n "${color}${message}$(tput sgr0)"
+}
+
+# Set the name of the log file to current time => Making the logs unique if you were to reinstall things.
+LOG="install-$(date +%d-%H%M%S).log"
+
+script_directory=install-scripts
+
